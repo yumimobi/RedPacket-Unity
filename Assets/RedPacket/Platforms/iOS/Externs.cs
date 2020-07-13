@@ -6,12 +6,7 @@ using System.Runtime.InteropServices;
 namespace RedPacket.iOS
 {    
     class Externs
-    {
-        #region Common externs
-        [DllImport("__Internal")]
-        internal static extern IntPtr RPSDKRelease(IntPtr obj);
-        #endregion
-        
+    {   
         #region RedPacket SDK externs
         [DllImport("__Internal")]
         internal static extern IntPtr RedPacketCreateSDK(IntPtr sdkClient);
@@ -30,19 +25,19 @@ namespace RedPacket.iOS
         );
 
         [DllImport("__Internal")]
-        internal static extern void RPSDKShowLeftView(IntPtr sdk, int x, int y, int width);
+        internal static extern void rpSDKShowLeftView(IntPtr sdk, int x, int y, int width);
         
         [DllImport("__Internal")]
-        internal static extern void RPSDKDestroyLeftView(IntPtr sdk);
+        internal static extern void rpSDKDestroyLeftView(IntPtr sdk);
         
         [DllImport("__Internal")]
-        internal static extern void RPSDKShowRedPacketVc(IntPtr sdk);
+        internal static extern void rpSDKShowRedPacketVc(IntPtr sdk);
 
         [DllImport("__Internal")]
-        internal static extern void RPSDKShowRedPacketFinalVc(IntPtr sdk);
+        internal static extern void rpSDKShowRedPacketFinalVc(IntPtr sdk);
         
         [DllImport("__Internal")]
-        internal static extern bool RPSDKIsReady(IntPtr sdk);
+        internal static extern bool rpSDKIsReady(IntPtr sdk);
         #endregion
     }
 }
