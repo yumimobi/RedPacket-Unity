@@ -69,11 +69,11 @@ namespace RedPacket.API
                     OnFinalRedPacketControllerHasBeenShown(this, args);
                 }
             };
-            client.OnFinalRedPacketControllerHasBeenClicked += (sender, args) =>
+            client.OnFinalRedPacketControllerHasBeenDismissed += (sender, args) =>
             {
-                if(OnFinalRedPacketControllerHasBeenClicked != null)
+                if(OnFinalRedPacketControllerHasBeenDismissed != null)
                 {
-                    OnFinalRedPacketControllerHasBeenClicked(this, args);
+                    OnFinalRedPacketControllerHasBeenDismissed(this, args);
                 }
             };
         }
