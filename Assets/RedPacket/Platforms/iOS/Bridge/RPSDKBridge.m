@@ -3,7 +3,7 @@
 @interface RPSDKBridge ()<RPSDKDelegate>
 @end
 
-@implementation RPSDKDelegate
+@implementation RPSDKBridge
 - (instancetype)initRPSDKWithSDKClientReference:(RPTypeSDKClientRef *)sdkClientRef {
     if (self = [super init]) {
         _sdkClient = sdkClientRef;
@@ -33,14 +33,14 @@
 // 1. 激励视频加载完成
 // 2. 触发奖励条件
 - (void)showRedPacketVc {
-    [self.sdk showRedPacketVcWith:UnityGetGLViewController()]
+    [self.sdk showRedPacketVcWith:UnityGetGLViewController()];
 }
 
 // 展示红包结算界面
 // 展示条件：
 // 1. 激励视频关闭且获得奖励
 - (void)showRedPacketFinalVc {
-    [self.sdk showRedPacketFinalVcWith:UnityGetGLViewController()]
+    [self.sdk showRedPacketFinalVcWith:UnityGetGLViewController()];
 }
 
 // 红包是否准备好
@@ -72,7 +72,7 @@
 // 左上角用户中心入口被点击
 - (void)rpLeftViewHasBeenClicked {
     if (self.sdkLeftViewHasBeenClickedCallback) {
-        self.sdkLeftViewHasBeenClickedCallback(self.sdkClient)
+        self.sdkLeftViewHasBeenClickedCallback(self.sdkClient);
     }
 }
 //
@@ -104,7 +104,7 @@
 // 红包结算界面关闭
 - (void)rpFinalControllerIsDismissed {
     if (self.sdkFinalControllerHasBeenDismissedCallback) {
-        self.sdkFinalControllerHasBeenDismissedCallback(self.sdkClient)
+        self.sdkFinalControllerHasBeenDismissedCallback(self.sdkClient);
     }
 }
 

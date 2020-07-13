@@ -39,3 +39,5 @@
 
 // 红包是否准备好
 - (BOOL)isReady;
+
+@end

@@ -20,16 +20,16 @@ void RedPacketSetSDKCallbacks(
     RPSDKFinalControllerHasBeenShown sdkFinalControllerHasBeenShownCallback,
     RPSDKFinalControllerHasBeenDismissed sdkFinalControllerHasBeenDismissedCallback
 ){
-    RPSDKBridge *sdk = (__bridge RPSDKBridge *)sdk;
-    sdk.sdkFailToInitCallback = sdkFailToInitCallback;
-    sdk.sdkSuccessToInitCallback = sdkSuccessToInitCallback;
-    sdk.sdkLeftViewHasBeenShownCallback = sdkLeftViewHasBeenShownCallback;
-    sdk.sdkLeftViewHasBeenClickedCallback = sdkLeftViewHasBeenClickedCallback;
-    sdk.sdkRedPacketControllerHasBeenShownCallback = sdkRedPacketControllerHasBeenShownCallback;
-    sdk.sdkRedPacketControllerHasBeenDismissedCallback = sdkRedPacketControllerHasBeenDismissedCallback;
-    sdk.sdkRedPacketControllerHasBeenClickedCallback = sdkRedPacketControllerHasBeenClickedCallback;
-    sdk.sdkFinalControllerHasBeenShownCallback = sdkFinalControllerHasBeenShownCallback;
-    sdk.sdkFinalControllerHasBeenDismissedCallback = sdkFinalControllerHasBeenDismissedCallback;
+    RPSDKBridge *sdkBridge = (__bridge RPSDKBridge *)sdk;
+    sdkBridge.sdkFailToInitCallback = sdkFailToInitCallback;
+    sdkBridge.sdkSuccessToInitCallback = sdkSuccessToInitCallback;
+    sdkBridge.sdkLeftViewHasBeenShownCallback = sdkLeftViewHasBeenShownCallback;
+    sdkBridge.sdkLeftViewHasBeenClickedCallback = sdkLeftViewHasBeenClickedCallback;
+    sdkBridge.sdkRedPacketControllerHasBeenShownCallback = sdkRedPacketControllerHasBeenShownCallback;
+    sdkBridge.sdkRedPacketControllerHasBeenDismissedCallback = sdkRedPacketControllerHasBeenDismissedCallback;
+    sdkBridge.sdkRedPacketControllerHasBeenClickedCallback = sdkRedPacketControllerHasBeenClickedCallback;
+    sdkBridge.sdkFinalControllerHasBeenShownCallback = sdkFinalControllerHasBeenShownCallback;
+    sdkBridge.sdkFinalControllerHasBeenDismissedCallback = sdkFinalControllerHasBeenDismissedCallback;
 }
 
 void rpSDKShowLeftView(RPTypeSDKRef sdk, int x, int y, int width) {
