@@ -11,7 +11,7 @@ namespace RedPacket
 #if UNITY_ANDROID
             return new Android.Client();
 #elif UNITY_IPHONE
-            return new iOS.RPSDKClient(GameObject gameObject);
+            return new iOS.RPSDKClient(gameObject);
 #else
             return new DummyClient();
 #endif

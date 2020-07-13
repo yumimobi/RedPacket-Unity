@@ -28,20 +28,20 @@ namespace RedPacket.iOS
         internal delegate void RPSDKFinalControllerHasBeenDismissed(IntPtr sdkClient);
 #endregion
 
-        public event EventHandler<EventArgs> OnSdkFailToInitCallback;
-        public event EventHandler<RPSDKEventArgs> OnSdkSuccessToInitCallback;
-        public event EventHandler<EventArgs> OnSdkLeftViewHasBeenShownCallback;
-        public event EventHandler<EventArgs> OnSdkLeftViewHasBeenClickedCallback;
-        public event EventHandler<EventArgs> OnSdkRedPacketControllerHasBeenShownCallback;
-        public event EventHandler<EventArgs> OnSdkRedPacketControllerHasBeenDismissedCallback;
-        public event EventHandler<EventArgs> OnSdkRedPacketControllerHasBeenClickedCallback;
-        public event EventHandler<EventArgs> OnSdkFinalControllerHasBeenShownCallback;
-        public event EventHandler<EventArgs> OnSdkFinalControllerHasBeenDismissedCallback;
+        public event EventHandler<EventArgs> OnSDKInitFailed;
+        public event EventHandler<RPSDKEventArgs> OnSDKInitSuccess;
+        public event EventHandler<EventArgs> OnLeftViewHasBeenShown;
+        public event EventHandler<EventArgs> OnLeftViewHasBeenClicked;
+        public event EventHandler<EventArgs> OnRedPacketControllerHasBeenShown;
+        public event EventHandler<EventArgs> OnRedPacketControllerHasBeenDismissed;
+        public event EventHandler<EventArgs> OnRedPacketControllerHasBeenClicked;
+        public event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenShown;
+        public event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenDismissed;
 
         public RPSDKClient(GameObject gameObject)
         {
             sdkClientPtr = (IntPtr)GCHandle.Alloc(this);
-            sdkPtr = Externs.RedPacketCreateSDK(windowAdClientPtr);
+            sdkPtr = Externs.RedPacketCreateSDK(sdkClientPtr);
             Externs.RedPacketSetSDKCallbacks(
                 sdkPtr,
                 rpSDKFailToInitCallback,
@@ -61,7 +61,7 @@ namespace RedPacket.iOS
 #region IRedPacketSDKClient implement 
         public bool IsReady()
         {
-            return Externs.RPSDKIsReady(windowAdPtr);
+            return Externs.rpSDKIsReady(sdkPtr);
         }
 
         public void ShowLeftView(Transform rect)
@@ -144,23 +144,23 @@ namespace RedPacket.iOS
         private static void rpSDKFailToInitCallback(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkFailToInitCallback != null)
+            if (client.OnSDKInitFailed != null)
             {
-                client.OnSdkFailToInitCallback(client, EventArgs.Empty);
+                client.OnSDKInitFailed(client, EventArgs.Empty);
             }
         }
 
         [MonoPInvokeCallback(typeof(RPSDKInitSuccessCallback))]
-        private static void rpSDKInitSuccessCallback(IntPtr sdkClient， string zplayID)
+        private static void rpSDKInitSuccessCallback(IntPtr sdkClient, string zplayID)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkSuccessToInitCallback != null)
+            if (client.OnSDKInitSuccess != null)
             {
                 RPSDKEventArgs args = new RPSDKEventArgs()
                 {
                     Message = zplayID
                 };
-                client.OnSdkSuccessToInitCallback(client, args);
+                client.OnSDKInitSuccess(client, args);
             }
         }
 
@@ -168,9 +168,9 @@ namespace RedPacket.iOS
         private static void rpSDKLeftViewHasBeenShown(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkLeftViewHasBeenShownCallback != null)
+            if (client.OnLeftViewHasBeenShown != null)
             {
-                client.OnSdkLeftViewHasBeenShownCallback(client, EventArgs.Empty);
+                client.OnLeftViewHasBeenShown(client, EventArgs.Empty);
             }
         }
 
@@ -178,9 +178,9 @@ namespace RedPacket.iOS
         private static void rpSDKLeftViewHasBeenClicked(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkLeftViewHasBeenClickedCallback != null)
+            if (client.OnLeftViewHasBeenClicked != null)
             {
-                client.OnSdkLeftViewHasBeenClickedCallback(client, EventArgs.Empty);
+                client.OnLeftViewHasBeenClicked(client, EventArgs.Empty);
             }
         }
 
@@ -188,9 +188,9 @@ namespace RedPacket.iOS
         private static void rpSDKRedPacketControllerHasBeenShown(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkRedPacketControllerHasBeenShownCallback != null)
+            if (client.OnRedPacketControllerHasBeenShown != null)
             {
-                client.OnSdkRedPacketControllerHasBeenShownCallback(client, EventArgs.Empty);
+                client.OnRedPacketControllerHasBeenShown(client, EventArgs.Empty);
             }
         }
 
@@ -198,9 +198,9 @@ namespace RedPacket.iOS
         private static void rpSDKRedPacketControllerHasBeenDismissed(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkRedPacketControllerHasBeenDismissedCallback != null)
+            if (client.OnRedPacketControllerHasBeenDismissed != null)
             {
-                client.OnSdkRedPacketControllerHasBeenDismissedCallback(client, EventArgs.Empty);
+                client.OnRedPacketControllerHasBeenDismissed(client, EventArgs.Empty);
             }
         }
 
@@ -208,9 +208,9 @@ namespace RedPacket.iOS
         private static void rpSDKRedPacketControllerHasBeenClicked(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkRedPacketControllerHasBeenClickedCallback != null)
+            if (client.OnRedPacketControllerHasBeenClicked != null)
             {
-                client.OnSdkRedPacketControllerHasBeenClickedCallback(client, EventArgs.Empty);
+                client.OnRedPacketControllerHasBeenClicked(client, EventArgs.Empty);
             }
         }
 
@@ -218,19 +218,19 @@ namespace RedPacket.iOS
         private static void rpSDKFinalControllerHasBeenShown(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkFinalControllerHasBeenShownCallback != null)
+            if (client.OnFinalRedPacketControllerHasBeenShown != null)
             {
-                client.OnSdkFinalControllerHasBeenShownCallback(client, EventArgs.Empty);
+                client.OnFinalRedPacketControllerHasBeenShown(client, EventArgs.Empty);
             }
         }
 
         [MonoPInvokeCallback(typeof(RPSDKFinalControllerHasBeenDismissed))]
-        private static void rpSDKFinalControllerHasBeenShown(IntPtr sdkClient)
+        private static void rpSDKFinalControllerHasBeenDismissed(IntPtr sdkClient)
         {
             RPSDKClient client = IntPtrToRPSDKClient(sdkClient);
-            if (client.OnSdkFinalControllerHasBeenDismissedCallback != null)
+            if (client.OnFinalRedPacketControllerHasBeenDismissed != null)
             {
-                client.OnSdkFinalControllerHasBeenDismissedCallback(client, EventArgs.Empty);
+                client.OnFinalRedPacketControllerHasBeenDismissed(client, EventArgs.Empty);
             }
         }
 

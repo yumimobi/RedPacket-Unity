@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 2.1.3
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,7 +155,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.zytx.xmxx
     Standalone: com.Company.ProductName
-  buildNumber: {}
+    iOS: com.zplay.popstarunity
+  buildNumber:
+    iOS: 2020071301
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
