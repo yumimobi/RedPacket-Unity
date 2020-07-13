@@ -40,4 +40,7 @@
 // 红包是否准备好
 - (BOOL)isReady;
 
+// SDK 是否初始化成功
+- (BOOL)isInitCompleted;
+
 @end

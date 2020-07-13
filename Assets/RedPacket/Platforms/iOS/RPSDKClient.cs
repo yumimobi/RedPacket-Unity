@@ -64,6 +64,11 @@ namespace RedPacket.iOS
             return Externs.rpSDKIsReady(sdkPtr);
         }
 
+        public bool IsInitCompleted()
+        {
+            return Externs.rpSDKIsInitCompleted(sdkPtr);
+        }
+
         public void ShowLeftView(Transform rect)
         {
             if (rect != null)

@@ -17,6 +17,7 @@ namespace RedPacket.Common
         event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenDismissed;
 
         bool IsReady();
+        bool IsInitCompleted();
         void ShowLeftView(Transform rect);
         void DestroyLeftView();
         void ShowRedPacketController();

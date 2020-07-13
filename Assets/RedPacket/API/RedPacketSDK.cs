@@ -116,6 +116,14 @@ namespace RedPacket.API
         public event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenDismissed;
 
         /// <summary>
+        /// SDK 是否初始化成功
+        /// </summary>
+        /// <returns></returns>
+        public bool IsInitCompleted()
+        {
+            return client.IsInitCompleted();
+        }
+        /// <summary>
         /// 红包是否准备好
         /// </summary>
         /// <returns></returns>

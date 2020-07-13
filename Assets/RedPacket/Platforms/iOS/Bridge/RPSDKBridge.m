@@ -48,6 +48,10 @@
     return self.sdk.isReady;
 }
 
+- (BOOL)isInitCompleted {
+    return self.sdk.initSuccess;
+}
+
 #pragma mark - RPSDKDelegate
 // 初始化失败
 - (void)rpFailToInit {

@@ -38,6 +38,9 @@ namespace RedPacket.iOS
         
         [DllImport("__Internal")]
         internal static extern bool rpSDKIsReady(IntPtr sdk);
+
+        [DllImport("__Internal")]
+        internal static extern bool rpSDKIsInitCompleted(IntPtr sdk);
         #endregion
     }
 }
