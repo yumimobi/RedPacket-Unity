@@ -46,5 +46,11 @@ namespace RedPacket.Common
         {
             Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
         }
+
+        public bool IsInitCompleted()
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+            return true;
+        }
     }
 }
