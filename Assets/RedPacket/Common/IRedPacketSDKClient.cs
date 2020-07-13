@@ -1,5 +1,5 @@
 using System;
-using RedPacket.Api;
+using RedPacket.API;
 using UnityEngine;
 
 namespace RedPacket.Common

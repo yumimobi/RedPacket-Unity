@@ -1,5 +1,5 @@
 using System;
-namespace RedPacket.Api
+namespace RedPacket.API
 {
     public class RPSDKEventArgs : EventArgs
     {

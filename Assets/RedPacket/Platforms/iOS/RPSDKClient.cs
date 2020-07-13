@@ -1,7 +1,7 @@
 #if UNITY_IOS
 using System;
 using RedPacket.Common;
-using RedPacket.Api;
+using RedPacket.API;
 using System.Runtime.InteropServices;
 using UnityEngine;
 

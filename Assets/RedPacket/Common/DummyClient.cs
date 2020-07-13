@@ -1,9 +1,7 @@
 using System;
 using System.Reflection;
-
 using UnityEngine;
-
-using RedPacket.Api;
+using RedPacket.API;
 
 namespace RedPacket.Common
 {

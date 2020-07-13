@@ -2,7 +2,7 @@ using System;
 using RedPacket.Common;
 using UnityEngine;
 
-namespace RedPacket.Api
+namespace RedPacket.API
 {
     public class RedPacketSDK
     {
