@@ -131,7 +131,7 @@ namespace RedPacket.API
         /// <param name="rect"></param>
         public void ShowLeftView(Transform rect)
         {
-            client.ShowLeftView(windowAdRect);
+            client.ShowLeftView(rect);
         }
         /// <summary>
         /// 销毁左上角用户中心入口视图
