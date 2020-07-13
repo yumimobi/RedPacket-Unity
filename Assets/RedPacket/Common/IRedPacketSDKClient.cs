@@ -14,7 +14,7 @@ namespace RedPacket.Common
         event EventHandler<EventArgs> OnRedPacketControllerHasBeenDismissed;
         event EventHandler<EventArgs> OnRedPacketControllerHasBeenClicked;
         event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenShown;
-        event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenClicked;
+        event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenDismissed;
 
 
         bool IsReady();
