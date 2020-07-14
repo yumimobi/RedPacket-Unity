@@ -56,10 +56,10 @@ void rpSDKShowRedPacketFinalVc(RPTypeSDKRef sdk) {
 
 BOOL rpSDKIsReady(RPTypeSDKRef sdk) {
     RPSDKBridge *sdkBridge = (__bridge RPSDKBridge *)sdk;
-    [sdkBridge isReady];
+    return [sdkBridge isReady];
 }
 
 BOOL rpSDKIsInitCompleted(RPTypeSDKRef sdk) {
     RPSDKBridge *sdkBridge = (__bridge RPSDKBridge *)sdk;
-    [sdkBridge isInitCompleted];
+    return [sdkBridge isInitCompleted];
 }
