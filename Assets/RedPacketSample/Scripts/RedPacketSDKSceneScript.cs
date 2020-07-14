@@ -69,8 +69,7 @@ public class RedPacketSDKSceneScript : MonoBehaviour
             leftView.transform.position = new Vector3(x, y, 200);
             leftView.GetComponent<RectTransform>().sizeDelta = new Vector2(w, w);
         }
-
-        if (leftView != null)
+        if (redPacketSDK != null)
         {
             redPacketSDK.ShowLeftView(leftView.transform);
         }
