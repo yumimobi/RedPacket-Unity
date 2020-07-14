@@ -1,10 +1,13 @@
 #import <Foundation/Foundation.h>
 #import "RPTypes.h"
 #import "RPSDKBridge.h"
+#import "RPObjectCache.h"
 
 RPTypeSDKRef RedPacketCreateSDK(RPTypeSDKClientRef *sdkClient) 
 {
     RPSDKBridge *sdk = [[RPSDKBridge alloc] initRPSDKWithSDKClientReference:sdkClient];
+    RPObjectCache *cache = [RPObjectCache sharedInstance];
+    [cache.references setObject:sdk forKey:[sdk rp_referenceKey]];
     return (__bridge RPTypeSDKRef)sdk;
 }
 
