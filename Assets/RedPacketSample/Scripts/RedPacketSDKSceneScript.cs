@@ -19,11 +19,9 @@ public class RedPacketSDKSceneScript : MonoBehaviour
 
     void Start()
     {
-
-
     }
 
-    public void init()
+    public void initRPSDK()
     {
         redPacketSDK = new RedPacketSDK(gameObject);
         redPacketSDK.OnSDKInitFailed += HandleInitFailed;
@@ -35,6 +33,12 @@ public class RedPacketSDKSceneScript : MonoBehaviour
         redPacketSDK.OnRedPacketControllerHasBeenClicked += HandleRedPacketControllerHasBeenClicked;
         redPacketSDK.OnFinalRedPacketControllerHasBeenShown += HandleFinalRedPacketControllerHasBeenShown;
         redPacketSDK.OnFinalRedPacketControllerHasBeenDismissed += HandleFinalRedPacketControllerHasBeenDismissed;
+    }
+
+    public void isInitCompleted() 
+    {
+        redPacketSDK.IsInitCompleted();
+        statusText.text = "is init completed:" + redPacketSDK.IsInitCompleted();
     }
 
 
@@ -69,6 +73,14 @@ public class RedPacketSDKSceneScript : MonoBehaviour
         if (leftView != null)
         {
             redPacketSDK.ShowLeftView(leftView.transform);
+        }
+    }
+
+    public void destroyLeftView()
+    {
+        if (redPacketSDK != null)
+        {
+            redPacketSDK.DestroyLeftView();
         }
     }
 

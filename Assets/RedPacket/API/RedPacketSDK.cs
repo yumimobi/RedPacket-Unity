@@ -1,6 +1,7 @@
 using System;
 using RedPacket.Common;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RedPacket.API
 {
@@ -8,9 +9,9 @@ namespace RedPacket.API
     {
         IRedPacketSDKClient client;
 
-        // Creates WindowAd instance.
         public RedPacketSDK(GameObject gameObject)
-        {
+        {   
+            Debug.Log("Redpacket---init2");
             client = RedPacketClientFactory.BuildRedPacketSDKClient(gameObject);
 
             client.OnSDKInitFailed += (sender, args) =>
