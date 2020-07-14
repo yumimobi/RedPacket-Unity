@@ -23,7 +23,7 @@ public class RedPacketSDKSceneScript : MonoBehaviour
 
     public void initRPSDK()
     {
-        redPacketSDK = new RedPacketSDK(gameObject);
+        redPacketSDK = new RedPacket.API.RedPacketSDK(gameObject);
         redPacketSDK.OnSDKInitFailed += HandleInitFailed;
         redPacketSDK.OnSDKInitSuccess += HandleInitSuccess;
         redPacketSDK.OnLeftViewHasBeenShown += HandleLeftViewHasBeenShown;

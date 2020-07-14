@@ -9,7 +9,7 @@ namespace RedPacket
         public static IRedPacketSDKClient BuildRedPacketSDKClient(GameObject gameObject)
         {
 #if UNITY_ANDROID
-            return new Android.Client();
+            return new Android.RedPacketSDKClient(gameObject);
 #elif UNITY_IPHONE
             return new iOS.RPSDKClient(gameObject);
 #else
