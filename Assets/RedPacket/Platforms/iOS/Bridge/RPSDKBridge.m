@@ -1,6 +1,8 @@
 #import "RPSDKBridge.h"
+static CGFloat iPhonePlusHeight = 736.0;
 
 @interface RPSDKBridge ()<RPSDKDelegate>
+@property (nonatomic, assign) CGFloat scale;
 @end
 
 @implementation RPSDKBridge
@@ -18,8 +20,8 @@
 - (void)showLeftViewWithX:(CGFloat)x 
                         y:(CGFloat)y
                     width:(CGFloat)width {
-    CGFloat height = width/2.35;
-    CGRect frame = CGRectMake(x, y, width, height);
+    CGFloat height = width/self.scale/2.35;
+    CGRect frame = CGRectMake(x/self.scale, y/self.scale, width/self.scale, height);
     [self.sdk showUserViewWith:frame viewController:UnityGetGLViewController()];
 }
 
@@ -110,6 +112,17 @@
     if (self.sdkFinalControllerHasBeenDismissedCallback) {
         self.sdkFinalControllerHasBeenDismissedCallback(self.sdkClient);
     }
+}
+
+- (void)screenScale {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGFloat scale = [UIScreen mainScreen].scale;
+        if ([UIScreen mainScreen].bounds.size.height == iPhonePlusHeight) {
+            scale = [UIScreen mainScreen].nativeScale; // 6/7/8 plus的实际像素比是2.6。 屏幕宽高414:736  物理像素1080:1920
+        }
+        NSLog(@"[UIScreen mainScreen].scale = %f,",scale);
+        self.scale = scale;
+    });
 }
 
 @end
