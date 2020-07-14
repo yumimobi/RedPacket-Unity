@@ -11,7 +11,6 @@ namespace RedPacket.API
 
         public RedPacketSDK(GameObject gameObject)
         {   
-            Debug.Log("Redpacket---init2");
             client = RedPacketClientFactory.BuildRedPacketSDKClient(gameObject);
 
             client.OnSDKInitFailed += (sender, args) =>
