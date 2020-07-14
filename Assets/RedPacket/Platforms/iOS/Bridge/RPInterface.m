@@ -9,7 +9,7 @@ RPTypeSDKRef RedPacketCreateSDK(RPTypeSDKClientRef *sdkClient)
 }
 
 void RedPacketSetSDKCallbacks(
-    RPTypeSDKClientRef sdk,
+    RPTypeSDKRef sdk,
     RPSDKFailToInitCallback sdkFailToInitCallback,
     RPSDKInitSuccessCallback sdkSuccessToInitCallback,
     RPSDKLeftViewHasBeenShown sdkLeftViewHasBeenShownCallback,
