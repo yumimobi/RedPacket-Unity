@@ -38,12 +38,25 @@ namespace RedPacket.iOS
         public event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenShown;
         public event EventHandler<EventArgs> OnFinalRedPacketControllerHasBeenDismissed;
 
+        private IntPtr SDKPtr
+        {
+            get
+            {
+                return sdkPtr;
+            }
+
+            set
+            {
+                sdkPtr = value;
+            }
+        }
+
         public RPSDKClient(GameObject gameObject)
         {
             sdkClientPtr = (IntPtr)GCHandle.Alloc(this);
-            sdkPtr = Externs.RedPacketCreateSDK(sdkClientPtr);
+            SDKPtr = Externs.RedPacketCreateSDK(sdkClientPtr);
             Externs.RedPacketSetSDKCallbacks(
-                sdkPtr,
+                SDKPtr,
                 rpSDKFailToInitCallback,
                 rpSDKInitSuccessCallback,
                 rpSDKLeftViewHasBeenShown,
@@ -61,12 +74,12 @@ namespace RedPacket.iOS
 #region IRedPacketSDKClient implement 
         public bool IsReady()
         {
-            return Externs.rpSDKIsReady(sdkPtr);
+            return Externs.rpSDKIsReady(SDKPtr);
         }
 
         public bool IsInitCompleted()
         {
-            return Externs.rpSDKIsInitCompleted(sdkPtr);
+            return Externs.rpSDKIsInitCompleted(SDKPtr);
         }
 
         public void ShowLeftView(Transform rect)
@@ -81,22 +94,22 @@ namespace RedPacket.iOS
                 width = (int)sdkRectTransform.width;
             }
 
-            Externs.rpSDKShowLeftView(sdkPtr ,x, y, width);
+            Externs.rpSDKShowLeftView(SDKPtr ,x, y, width);
         }
 
         public void DestroyLeftView()
         {
-            Externs.rpSDKDestroyLeftView(sdkPtr);
+            Externs.rpSDKDestroyLeftView(SDKPtr);
         }
 
         public void ShowRedPacketController()
         {
-            Externs.rpSDKShowRedPacketVc(sdkPtr);
+            Externs.rpSDKShowRedPacketVc(SDKPtr);
         }
 
         public void ShowFinalRedPacketController()
         {
-            Externs.rpSDKShowRedPacketFinalVc(sdkPtr);
+            Externs.rpSDKShowRedPacketFinalVc(SDKPtr);
         }
 
         private Rect getGameObjectRect(RectTransform rectTransform, Camera camera)
