@@ -140,6 +140,7 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
    ```
 
 #### 配置Android参数
+
 1. 配置 Assets > Plugins > Android > assets > ZplayConfig.xml文件中的参数
 
 ![Alt text](./DocumentResources/zplayConfig.png) 
