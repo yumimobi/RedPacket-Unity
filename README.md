@@ -196,7 +196,6 @@
         print("Redpacket---HandleFinalRedPacketControllerHasBeenDismissed");
     }
 
-  
     #endregion
 ```
 
@@ -215,12 +214,10 @@
    #import <RedPacket/RPWechatLogin.h>
 
    @interface AppDelegate : UIResponder<UIApplicationDelegate, WXApiDelegate>
-
    @property (strong, nonatomic) UIWindow *window;
-
    @end
    ```
-6. 向微信注册
+5. 向微信注册
    ```
    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -230,7 +227,7 @@
    }
    ```
 
-7. 重写AppDelegate 的 handleOpenURL 和 openURL 方法：
+6. 重写AppDelegate 的 handleOpenURL 和 openURL 方法：
    ```
    - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 
@@ -240,17 +237,15 @@
    - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
    }
-   
    ```
    
-8. 重写AppDelegate的continueUserActivity方法：
+7. 重写AppDelegate的continueUserActivity方法：
    ```
    - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
     return [WXApi handleOpenUniversalLink:userActivity delegate:[RPWechatLogin shared]];
 }
    ```
-9. ATS 设置
-   
+8. ATS 设置
    ```
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -258,8 +253,7 @@
 		<true/>
 	</dict>
    ```
-10. 在info.plist中设置如下ID。具体值请联系产品获取
-	
+9. 在info.plist中设置如下ID。具体值请联系产品获取
    ```
 	<key>zchannelid</key>
     <string>ca429</string>
