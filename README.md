@@ -200,7 +200,7 @@
 ```
 
 ## Xcode 开发环境搭建
-1. 请先接入最新 Unity 插件，后导出 Xcode 工程。
+1. 请先接入[最新 Unity 插件](https://github.com/yumimobi/RedPacket-Unity/releases/download/2.1.0/RedPacket.unitypackage)，后导出 Xcode 工程。
 2. 在 Xcode 中，选择你的工程设置项，选中“TARGETS”一栏，在“info”标签栏的“URL type“添加“URL scheme”为你在微信后台所注册的应用程序 id（如下图所示）。
    ![Alt text](./DocumentResources/1583978910289.png)
 
