@@ -1,4 +1,4 @@
-# 红包 SDK 2.0.0 Unity 接入文档
+# 红包 SDK Unity 接入文档
 
 ## 入门指南
 
@@ -8,13 +8,12 @@
 
 ## 下载红包 SDK Unity 插件  
 
-借助 红包 SDK Unity 插件，Unity 开发者无需编写 Java 或 Objective-C 代码，即可轻松地在 Android 和 iOS 应用上接入红包SDK。  
+借助红包 SDK Unity 插件，Unity 开发者无需编写 Java 或 Objective-C 代码，即可轻松地在 Android 和 iOS 应用上接入红包SDK。  
 
 请通过如下链接下载该插件的 Unity 软件包，或在 GitHub 上查看其代码。
 
 [下载插件](https://github.com/yumimobi/RedPacket-Unity/releases/download/2.1.0/RedPacket.unitypackage)  
 [查看源代码](https://github.com/yumimobi/RedPacket-Unity)  
-
 
 ### 导入红包SDK Unity 插件
 
@@ -23,7 +22,6 @@
 ![Alt text](./DocumentResources/add_custom_package.png)
 
 确保选择所有文件，然后点击 Import。
-
 
 ### 加入红包 SDK  
 
@@ -47,7 +45,85 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 
 ### 配置红包 SDK 参数
 
-#### 配置IOS 参数
+#### 配置iOS 参数
+##### Universal Link 配置
+1. 打开Associated Domains开关，将Universal Links域名加到配置上
+   ![Alt text](./DocumentResources/1583978564188.png)
+   具体值为：
+   
+   ```
+   applinks:universallinks.yeaplay.com
+   ```
+   
+2. provisioning profile 需支持 Associated Domains
+   
+   ![Alt text](./DocumentResources/1583978691501.png)
+
+##### Xcode 开发环境搭建
+1. 请先接入[最新 Unity 插件](https://github.com/yumimobi/RedPacket-Unity/releases/download/2.1.0/RedPacket.unitypackage)，后导出 Xcode 工程。
+2. 在 Xcode 中，选择你的工程设置项，选中“TARGETS”一栏，在“info”标签栏的“URL type“添加“URL scheme”为你在微信后台所注册的应用程序 id（如下图所示）。
+   ![Alt text](./DocumentResources/1583978910289.png)
+
+3. 在Xcode中，选择你的工程设置项，选中“TARGETS”一栏，在 “info”标签的“LSApplicationQueriesSchemes“添加weixin 和weixinULAPI（如下图所示）。
+   ![Alt text](./DocumentResources/1583978943890.png)
+   
+4. 在你需要使用微信终端 API 的文件中 import WXApi.h 头文件，并增加 WXApiDelegate 协议。
+   ```
+   #import <UIKit/UIKit.h>
+   #import "WXApi.h"
+   #import <RedPacket/RPWechatLogin.h>
+
+   @interface AppDelegate : UIResponder<UIApplicationDelegate, WXApiDelegate>
+   @property (strong, nonatomic) UIWindow *window;
+   @end
+   ```
+5. 向微信注册
+   ```
+   - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    //向微信注册
+    [WXApi registerApp:APP_ID universalLink:UNIVERSAL_LINK];
+    return YES;
+   }
+   ```
+
+6. 重写AppDelegate 的 handleOpenURL 和 openURL 方法：
+   ```
+   - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+
+    return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
+   }
+
+   - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
+   }
+   ```
+   
+7. 重写AppDelegate的continueUserActivity方法：
+   ```
+   - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
+    return [WXApi handleOpenUniversalLink:userActivity delegate:[RPWechatLogin shared]];
+}
+   ```
+8. ATS 设置
+   ```
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+   ```
+9. 在info.plist中设置如下ID。具体值请联系产品获取
+   ```
+	<key>zchannelid</key>
+    <string>ca429</string>
+    <key>zgameid</key>
+    <string>gi008034</string>
+	<key>wesecertid</key>
+	<string>0041402d49cce0bf18da652253e60611</string>
+	<key>wechatid</key>
+	<string>wx8772f9a6e32902a1</string>
+   ```
 
 #### 配置Android参数
 1. 配置 Assets > Plugins > Android > assets > ZplayConfig.xml文件中的参数
@@ -80,22 +156,6 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">请将上面配置中的 "应用 Packet Name" 字段改为你应用的Packet Name，否则会导致微信登录失败</span></div>
 <br/>
-
-
-
-## Universal Link 配置
-1. 打开Associated Domains开关，将Universal Links域名加到配置上
-   ![Alt text](./DocumentResources/1583978564188.png)
-   具体值为：
-   
-   ```
-   applinks:universallinks.yeaplay.com
-   ```
-   
-2. provisioning profile 需支持 Associated Domains
-   
-   ![Alt text](./DocumentResources/1583978691501.png)
-
 
 ## 红包 SDK API
 
@@ -281,69 +341,3 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 
     #endregion
 ```
-
-## Xcode 开发环境搭建
-1. 请先接入[最新 Unity 插件](https://github.com/yumimobi/RedPacket-Unity/releases/download/2.1.0/RedPacket.unitypackage)，后导出 Xcode 工程。
-2. 在 Xcode 中，选择你的工程设置项，选中“TARGETS”一栏，在“info”标签栏的“URL type“添加“URL scheme”为你在微信后台所注册的应用程序 id（如下图所示）。
-   ![Alt text](./DocumentResources/1583978910289.png)
-
-3. 在Xcode中，选择你的工程设置项，选中“TARGETS”一栏，在 “info”标签的“LSApplicationQueriesSchemes“添加weixin 和weixinULAPI（如下图所示）。
-   ![Alt text](./DocumentResources/1583978943890.png)
-   
-4. 在你需要使用微信终端 API 的文件中 import WXApi.h 头文件，并增加 WXApiDelegate 协议。
-   ```
-   #import <UIKit/UIKit.h>
-   #import "WXApi.h"
-   #import <RedPacket/RPWechatLogin.h>
-
-   @interface AppDelegate : UIResponder<UIApplicationDelegate, WXApiDelegate>
-   @property (strong, nonatomic) UIWindow *window;
-   @end
-   ```
-5. 向微信注册
-   ```
-   - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    //向微信注册
-    [WXApi registerApp:APP_ID universalLink:UNIVERSAL_LINK];
-    return YES;
-   }
-   ```
-
-6. 重写AppDelegate 的 handleOpenURL 和 openURL 方法：
-   ```
-   - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-
-    return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
-   }
-
-   - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
-   }
-   ```
-   
-7. 重写AppDelegate的continueUserActivity方法：
-   ```
-   - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
-    return [WXApi handleOpenUniversalLink:userActivity delegate:[RPWechatLogin shared]];
-}
-   ```
-8. ATS 设置
-   ```
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-   ```
-9. 在info.plist中设置如下ID。具体值请联系产品获取
-   ```
-	<key>zchannelid</key>
-    <string>ca429</string>
-    <key>zgameid</key>
-    <string>gi008034</string>
-	<key>wesecertid</key>
-	<string>0041402d49cce0bf18da652253e60611</string>
-	<key>wechatid</key>
-	<string>wx8772f9a6e32902a1</string>
-   ```
