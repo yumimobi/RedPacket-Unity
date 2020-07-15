@@ -1,5 +1,88 @@
 # 红包 SDK 2.0.0 Unity 接入文档
 
+## 入门指南
+
+本指南适用于希望通过 Unity 应用获利的发布商。  
+
+要接入 红包 SDK并赚取收入，第一步是将 红包 SDK Unity 插件集成到应用中（本页将介绍如何进行此项操作）。  
+
+## 下载红包 SDK Unity 插件  
+
+借助 红包 SDK Unity 插件，Unity 开发者无需编写 Java 或 Objective-C 代码，即可轻松地在 Android 和 iOS 应用上接入红包SDK。  
+
+请通过如下链接下载该插件的 Unity 软件包，或在 GitHub 上查看其代码。
+
+[下载插件](https://github.com/yumimobi/RedPacket-Unity/releases/download/2.1.0/RedPacket.unitypackage)  
+[查看源代码](https://github.com/yumimobi/RedPacket-Unity)  
+
+
+### 导入红包SDK Unity 插件
+
+在 Unity 编辑器中打开您的项目，然后依次选择 Assets > Import Package > Custom Package，并找到您下载的 RedPacket.unitypackage 文件。  
+
+![Alt text](./DocumentResources/add_custom_package.png)
+
+确保选择所有文件，然后点击 Import。
+
+
+### 加入红包 SDK  
+
+红包SDK Unity 插件随 Unity Play [服务解析器库](https://github.com/googlesamples/unity-jar-resolver)一起发布。 此库旨在供需要访问 Android 特定库（例如 AAR）或 iOS CocoaPods 的所有 Unity 插件使用。它为 Unity 插件提供了声明依赖项的功能，然后依赖项会被自动解析并复制到 Unity 项目中。
+
+请按照下列步骤操作，确保您的项目包含红包SDK。 
+
+#### 部署到 iOS   
+
+您无需执行其他步骤即可将移动广告 SDK 加入 Unity 项目中。  
+*注意：iOS 依赖项的标识是通过 CocoaPods 完成的，而 CocoaPods 是构建过程完成后的一个运行步骤。*  
+
+#### 部署到 Android  
+
+在 Unity 编辑器中，依次选择 Assets > External Dependency Manager > Android Resolver > Force Resolve。  
+Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 Assets/Plugins/Android 目录中。  
+
+*注意：红包SDK Unity 插件依赖项位于 Assets/RedPacket/Editor/RedPacketDependencies.xml 中*  
+
+![Alt text](./DocumentResources/force_resolve.png) 
+
+### 配置红包 SDK 参数
+
+#### 配置IOS 参数
+
+#### 配置Android参数
+1. 配置 Assets > Plugins > Android > assets > ZplayConfig.xml文件中的参数
+
+![Alt text](./DocumentResources/zplayConfig.png) 
+
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(62,113,167);">ZplayConfig.xml文件中的GameID, ChannelID, WECHAT_APP_ID，WECHAT_APP_SECRET参数，请联系掌游产品获取</span></div>
+<br/>
+
+2. 配置 Assets > Plugins > Android > WXEntryActivity.java 文件的包名
+
+![Alt text](./DocumentResources/change_packege.png) 
+
+请将WXEntryActivity.java文件中的package改为 "应用包名" + ".wxapi"，否则会导致微信登录失败
+
+![Alt text](./DocumentResources/packetname.png) 
+
+3. 在 Assets > Plugins > Android > AndroidManifest.xml文件中增加如下配置
+```xml
+<activity
+    android:name="应用 Packet Name.wxapi.WXEntryActivity"
+    android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+    android:exported="true"
+    android:launchMode="singleTop"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+</activity>
+```
+
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(62,113,167);">请将上面配置中的 "应用 Packet Name" 字段改为你应用的Packet Name，否则会导致微信登录失败</span></div>
+<br/>
+
+
+
 ## Universal Link 配置
 1. 打开Associated Domains开关，将Universal Links域名加到配置上
    ![Alt text](./DocumentResources/1583978564188.png)
