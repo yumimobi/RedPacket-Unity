@@ -7,13 +7,17 @@
    
    ```
    applinks:universallinks.yeaplay.com
-```
+   ```
    
 2. provisioning profile 需支持 Associated Domains
+   
    ![Alt text](./DocumentResources/1583978691501.png)
 
+
 ## 红包 SDK API
+
 1. 初始化接口
+
 ```cs
     public void initRPSDK()
     {
@@ -208,8 +212,7 @@
    ```
    #import <UIKit/UIKit.h>
    #import "WXApi.h"
-   ```
-  #import <RedPacket/RPWechatLogin.h>
+   #import <RedPacket/RPWechatLogin.h>
 
    @interface AppDelegate : UIResponder<UIApplicationDelegate, WXApiDelegate>
 
@@ -232,15 +235,14 @@
    - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 
     return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
-}
+   }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+   - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [WXApi handleOpenURL:url delegate:[RPWechatLogin shared]];
-}
+   }
    
    ```
    
-   ```
 8. 重写AppDelegate的continueUserActivity方法：
    ```
    - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
