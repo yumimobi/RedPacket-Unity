@@ -2,6 +2,7 @@
 <dependencies>
     <androidPackages>
         <androidPackage spec="com.zplay.android.sdk:redpacket:0.0.2" />
+        <androidPackage spec="com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+" />
        
         <repositories>
             <repository>https://jcenter.bintray.com/</repository>
