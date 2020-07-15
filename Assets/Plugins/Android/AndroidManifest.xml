@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yumimobi.ads.unity"
+    package="com.zytx.xmxx"
     android:installLocation="preferExternal">
 
     <supports-screens
@@ -36,6 +36,14 @@
             <meta-data
                 android:name="unityplayer.UnityActivity"
                 android:value="true" />
+        </activity>
+
+         <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
      
         

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <dependencies>
     <androidPackages>
-        <androidPackage spec="com.zplay.android.sdk:redpacket:0.0.1" />
+        <androidPackage spec="com.zplay.android.sdk:redpacket:0.0.2" />
        
         <repositories>
             <repository>https://jcenter.bintray.com/</repository>
