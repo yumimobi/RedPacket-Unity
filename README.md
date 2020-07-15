@@ -129,14 +129,14 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
    ```
 9. 在info.plist中设置如下ID。具体值请联系产品获取
    ```
-	<key>zchannelid</key>
+    <key>zchannelid</key>
     <string>ca429</string>
     <key>zgameid</key>
     <string>gi008034</string>
-	<key>wesecertid</key>
-	<string>0041402d49cce0bf18da652253e60611</string>
-	<key>wechatid</key>
-	<string>wx8772f9a6e32902a1</string>
+    <key>wesecertid</key>
+    <string>0041402d49cce0bf18da652253e60611</string>
+    <key>wechatid</key>
+    <string>wx8772f9a6e32902a1</string>
    ```
 
 #### 配置Android参数
