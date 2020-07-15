@@ -19,7 +19,7 @@
 
 本指南适用于希望通过 Unity 应用获利的发布商。  
 
-要接入 红包 SDK并赚取收入，第一步是将 红包 SDK Unity 插件集成到应用中（本页将介绍如何进行此项操作）。  
+要接入红包 SDK 并赚取收入，第一步是将红包 SDK Unity 插件集成到应用中（本页将介绍如何进行此项操作）。  
 
 ## 下载红包 SDK Unity 插件  
 
@@ -40,7 +40,7 @@
 
 ### 加入红包 SDK  
 
-红包SDK Unity 插件随 Unity Play [服务解析器库](https://github.com/googlesamples/unity-jar-resolver)一起发布。 此库旨在供需要访问 Android 特定库（例如 AAR）或 iOS CocoaPods 的所有 Unity 插件使用。它为 Unity 插件提供了声明依赖项的功能，然后依赖项会被自动解析并复制到 Unity 项目中。
+红包 SDK Unity 插件随 Unity Play [服务解析器库](https://github.com/googlesamples/unity-jar-resolver)一起发布。 此库旨在供需要访问 Android 特定库（例如 AAR）或 iOS CocoaPods 的所有 Unity 插件使用。它为 Unity 插件提供了声明依赖项的功能，然后依赖项会被自动解析并复制到 Unity 项目中。
 
 请按照下列步骤操作，确保您的项目包含红包SDK。 
 
