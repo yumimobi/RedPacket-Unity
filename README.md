@@ -158,15 +158,15 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 ![Alt text](./DocumentResources/packetname.png) 
 
 3. 在 Assets > Plugins > Android > AndroidManifest.xml文件中增加如下配置
-```xml
- <activity
-     android:name="应用 Packet Name.wxapi.WXEntryActivity"
-     android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-     android:exported="true"
-     android:launchMode="singleTop"
-     android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
- </activity>
-```
+ ```xml
+  <activity
+      android:name="应用 Packet Name.wxapi.WXEntryActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+      android:exported="true"
+      android:launchMode="singleTop"
+      android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+  </activity>
+ ```
 
 <div style="background-color:rgb(228,244,253);padding:10px;">
 <span style="color:rgb(62,113,167);">请将上面配置中的 "应用 Packet Name" 字段改为你应用的Packet Name，否则会导致微信登录失败</span></div>
