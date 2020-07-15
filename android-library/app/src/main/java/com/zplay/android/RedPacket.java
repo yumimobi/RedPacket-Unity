@@ -160,7 +160,7 @@ public class RedPacket {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (ZplayRedPacketSDK.isReady()) {
+                if (ZplayRedPacketSDK.initIsSuccess()) {
                     ZplayRedPacketSDK.showUserView(mActivity, mPointX, mPointY, width);
                 }
             }
