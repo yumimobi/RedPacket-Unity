@@ -46,7 +46,7 @@
 
 #### 部署到 iOS   
 
-您无需执行其他步骤即可将移动广告 SDK 加入 Unity 项目中。  
+您无需执行其他步骤即可将红包 SDK 加入 Unity 项目中。  
 *注意：iOS 依赖项的标识是通过 CocoaPods 完成的，而 CocoaPods 是构建过程完成后的一个运行步骤。*  
 
 #### 部署到 Android  
