@@ -10,6 +10,7 @@
             * [配置iOS 参数](#配置ios-参数)
                * [Universal Link 配置](#universal-link-配置)
                * [Xcode 开发环境搭建](#xcode-开发环境搭建)
+            * [配置Android参数](#配置android参数)
       * [红包 SDK API](#红包-sdk-api)
 
 # 红包 SDK Unity 接入文档
@@ -117,7 +118,7 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
    ```
    - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void(^)(NSArray<id<UIUserActivityRestoring>> * __nullable restorableObjects))restorationHandler {
     return [WXApi handleOpenUniversalLink:userActivity delegate:[RPWechatLogin shared]];
-}
+   }
    ```
 8. ATS 设置
    ```
@@ -127,7 +128,7 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
 		<true/>
 	</dict>
    ```
-9. 在info.plist中设置如下ID。具体值请联系产品获取
+9. 在info.plist中设置如下ID。具体值请联系产品获取。
    ```
     <key>zchannelid</key>
     <string>ca429</string>
