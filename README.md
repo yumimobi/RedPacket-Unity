@@ -250,15 +250,17 @@
 }
    ```
 9. ATS 设置
-	```
+   
+   ```
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	```
+   ```
 10. 在info.plist中设置如下ID。具体值请联系产品获取
-	```
+	
+   ```
 	<key>zchannelid</key>
     <string>ca429</string>
     <key>zgameid</key>
@@ -267,4 +269,4 @@
 	<string>0041402d49cce0bf18da652253e60611</string>
 	<key>wechatid</key>
 	<string>wx8772f9a6e32902a1</string>
-	```
+   ```
