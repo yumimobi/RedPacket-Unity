@@ -9,7 +9,7 @@
         </repositories>
     </androidPackages>
     <iosPods>
-        <iosPod name="RedPacket" version="2.1.3" minTargetSdk="9.0">
+        <iosPod name="RedPacket" version="2.1.4" minTargetSdk="9.0">
             <sources>
                 <source>https://github.com/yumimobi/Specs.git</source>
             </sources>
