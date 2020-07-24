@@ -12,6 +12,7 @@ static CGFloat iPhonePlusHeight = 736.0;
         _sdk = [RPSDK shared];
         _sdk.delegate = self;
     }
+    [self screenScale];
     return self;
 }
 // 展示左上角用户中心入口，请在初始化成功后调用
