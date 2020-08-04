@@ -67,7 +67,10 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
    具体值为：
    
    ```
+   // 星星使用
    applinks:universallinks.yeaplay.com
+   // 其他游戏使用
+   applinks:universallinks-new.yeaplay.com
    ```
    
 2. provisioning profile 需支持 Associated Domains
@@ -97,6 +100,9 @@ Unity Play 服务解析器库会将声明的依赖项复制到 Unity 应用的 A
    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     //向微信注册
+    // UNIVERSAL_LINK 星星使用 https://universallinks.yeaplay.com/
+    // UNIVERSAL_LINK 口红使用 https://universallinks-new.yeaplay.com/lipart/
+    // UNIVERSAL_LINK 其他游戏请联系产品获取
     [WXApi registerApp:APP_ID universalLink:UNIVERSAL_LINK];
     return YES;
    }
